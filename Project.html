@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Gallery | Al Faris Furnishing</title>
+    <style>
+      :root {
+            /* Colors */
+            --primary-color: #b89b6a;
+            --primary-dark: #9a8259;
+            --secondary-color: #333333;
+            --light-color: #fffff6;
+            --white: #ffffff;
+            --black: #000000;
+            --gray: #fffdef;
+            --dark-gray: #777777;
+            
+            /* Fonts */
+            --main-font: 'Poppins', sans-serif;
+            
+            /* Spacing */
+            --section-padding: 80px;
+            --mobile-padding: 40px;
+            
+            /* Transitions */
+            --transition-fast: 0.3s ease-in-out;
+            --transition-medium: 0.5s ease-in-out;
+            --transition-slow: 0.8s ease-in-out;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: var(--gray);
+            box-shadow: var(--shadow);
+            z-index: 100;
+            padding: 0.3rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            width: 40px;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .call-btn {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .call-btn:hover {
+            background-color: var(--light-color);
+            transform: translateY(-2px);
+        }
+
+        .services-menu {
+            position: sticky;
+            top: 68px;
+            background-color: var(--white);
+            padding: 1rem 2rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            box-shadow: var(--shadow);
+            z-index: 90;
+            scrollbar-width: none;
+           
+            justify-content: center;
+           
+        }
+
+        .services-menu::-webkit-scrollbar {
+            display: none;
+        }
+
+        .services-container {
+            display: inline-flex;
+         
+            gap: 0.5rem;
+    
+        }
+
+        .service-btn {
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+            color: var(--text-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+         
+        }
+
+        .service-btn:hover, .service-btn.active {
+            background-color: var(--primary-color);
+            color: var(--light-text);
+            border-color: var(--primary-color);
+        }
+
+        .gallery {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .project-desc {
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .lightbox-img {
+            max-width: 100%;
+            max-height: 80vh;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: 0;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.3);
+            color: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            color: var(--light-text);
+        }
+
+        @media (max-width: 768px) {
+            .gallery {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                padding: 1rem;
+                gap: 1rem;
+            }
+
+            header, .services-menu {
+                padding: 0.5rem 1rem;
+            }
+
+            .services-menu {
+                top: 80px;
+
+            }
+          
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .call-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .project-img {
+                height: 150px;
+            }
+
+            .project-info {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="logo"><img src="img/ALFARIS LOGO 33.svg" alt=""> </a>
+        <a href="tel:+1234567890" class="call-btn">Call Us</a>
+    </header>
+
+    <nav class="services-menu">
+        <div class="services-container">
+            <button class="service-btn active" data-category="all">All Projects</button>
+            <button class="service-btn" data-category="Custom-Sofas">Custom Sofas & Majlis</button>
+            <button class="service-btn" data-category="Custom-Curtains">Custom Curtains</button>
+            <button class="service-btn" data-category="wallpapers">Wallpapers</button>
+            <button class="service-btn" data-category="Carpet">Carpet</button>
+            <button class="service-btn" data-category="Wood-Marble">Wood & Marble Alternatives</button>
+            <button class="service-btn" data-category="Parquet-Flooring">Parquet Flooring</button>
+        </div>
+    </nav>
+
+    <main class="gallery">
+        <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+            <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+            <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+            <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+            <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+            <div class="project-card" data-category="Custom-Sofas">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Sofas & Majlis</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+        <!----------------------------------------------------------------->
+        <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+          <div class="project-card" data-category="Custom-Curtains">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Custom Curtains</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+         <!----------------------------------------------------------------->
+         <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="wallpapers">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Floral Wallpaper</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <!----------------------------------------------------------------->
+         <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Carpet">
+            <img src="img/back 1.jpg" alt="Velvet Curtains" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Carpet</h3>
+                <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
+            </div>
+        </div>
+         <!----------------------------------------------------------------->
+         <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+        <div class="project-card" data-category="Wood-Marble">
+            <img src="img/back 2.jpg" alt="Luxury Sofa" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Wood & Marble Alternatives</h3>
+                <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
+            </div>
+        </div>
+         <!----------------------------------------------------------------->
+         <!----------Custom Sofas & Majlis-------->
+        <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <div class="project-card" data-category="Parquet-Flooring">
+            <img src="img/back 3.jpg" alt="Floral Wallpaper" class="project-img">
+            <div class="project-info">
+                <h3 class="project-title">Parquet Flooring</h3>
+                <p class="project-desc">Feature wall with premium floral wallpaper.</p>
+            </div>
+        </div>
+         <!----------------------------------------------------------------->
+    </main>
+
+    <div class="lightbox">
+        <div class="lightbox-content">
+            <img class="lightbox-img" src="" alt="">
+            <button class="lightbox-close">&times;</button>
+            <button class="lightbox-nav lightbox-prev">&larr;</button>
+            <button class="lightbox-nav lightbox-next">&rarr;</button>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Al Faris Furnishing. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        const serviceBtns = document.querySelectorAll('.service-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+        const lightbox = document.querySelector('.lightbox');
+        const lightboxImg = document.querySelector('.lightbox-img');
+        const lightboxClose = document.querySelector('.lightbox-close');
+        const lightboxPrev = document.querySelector('.lightbox-prev');
+        const lightboxNext = document.querySelector('.lightbox-next');
+
+        let currentImages = Array.from(document.querySelectorAll('.project-img')).map(img => img.src);
+        let currentIndex = 0;
+
+        function filterProjects(category) {
+            projectCards.forEach(card => {
+                const cat = card.getAttribute('data-category');
+                if (category === 'all' || cat === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        serviceBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                serviceBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-category');
+                filterProjects(filter);
+            });
+        });
+
+        document.querySelectorAll('.project-img').forEach((img, i) => {
+            img.addEventListener('click', () => {
+                currentImages = Array.from(document.querySelectorAll('.project-img')).map(img => img.src);
+                currentIndex = i;
+                lightboxImg.src = currentImages[currentIndex];
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        lightboxClose.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        lightboxPrev.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+            lightboxImg.src = currentImages[currentIndex];
+        });
+
+        lightboxNext.addEventListener('click', () => {
+            currentIndex = (currentIndex + 1) % currentImages.length;
+            lightboxImg.src = currentImages[currentIndex];
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') {
+                lightbox.classList.remove('active');
+                document.body.style.overflow = '';
+            } else if (e.key === 'ArrowLeft') {
+                lightboxPrev.click();
+            } else if (e.key === 'ArrowRight') {
+                lightboxNext.click();
+            }
+        });
+        // تشغيل الفلتر بناءً على رابط URL مثل Project.html?filter=Custom-Curtains
+window.addEventListener('DOMContentLoaded', () => {
+    const params = new URLSearchParams(window.location.search);
+    const filter = params.get('filter');
+    if (filter) {
+        const targetBtn = Array.from(serviceBtns).find(btn => btn.getAttribute('data-category') === filter);
+        if (targetBtn) {
+            targetBtn.click(); // يفعل الفلتر ويخلي الزرار active ويعرض الصور الخاصة بيه
+        } else {
+            filterProjects('all'); // fallback لو الفلتر مش موجود
+        }
+    } else {
+        filterProjects('all'); // default عند فتح الصفحة بدون فلاتر
+    }
+});
+
+    </script>
+</body>
+</html>
