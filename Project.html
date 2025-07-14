@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projects Gallery | Al Faris Furnishing</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="project.css">
     <style>
-      :root {
+        :root {
             /* Colors */
             --primary-color: #b89b6a;
             --primary-dark: #9a8259;
@@ -17,19 +18,20 @@
             --black: #000000;
             --gray: #fdfbef;
             --dark-gray: #777777;
-            
+
             /* Fonts */
             --main-font: 'Poppins', sans-serif;
-            
+
             /* Spacing */
             --section-padding: 80px;
             --mobile-padding: 40px;
-            
+
             /* Transitions */
             --transition-fast: 0.3s ease-in-out;
             --transition-medium: 0.5s ease-in-out;
             --transition-slow: 0.8s ease-in-out;
         }
+
         * {
             margin: 0;
             padding: 0;
@@ -67,17 +69,19 @@
         .logo span {
             color: var(--accent-color);
         }
-    header .call a{
-    background-color:var(--secondary-color) ;
-    color: var(--gray);
-    padding: 8px 20px;
-    font-size: 1.1rem;
-    border-radius: 20px;
-    transition: 0.5s ease-in-out;
-    }
-    header .call a:hover{
-    background-color: var(--primary-color);
-    }
+
+        header .call a {
+            background-color: var(--secondary-color);
+            color: var(--gray);
+            padding: 8px 20px;
+            font-size: 1.1rem;
+            border-radius: 20px;
+            transition: 0.5s ease-in-out;
+        }
+
+        header .call a:hover {
+            background-color: var(--primary-color);
+        }
 
         .services-menu {
             position: sticky;
@@ -90,7 +94,7 @@
             z-index: 90;
             scrollbar-width: none;
             justify-content: center;
-           
+
         }
 
         .services-menu::-webkit-scrollbar {
@@ -99,9 +103,9 @@
 
         .services-container {
             display: inline-flex;
-         
+
             gap: 0.5rem;
-    
+
         }
 
         .service-btn {
@@ -113,10 +117,11 @@
             cursor: pointer;
             transition: var(--transition);
             font-weight: 500;
-         
+
         }
 
-        .service-btn:hover, .service-btn.active {
+        .service-btn:hover,
+        .service-btn.active {
             background-color: var(--primary-color);
             color: var(--light-text);
             border-color: var(--primary-color);
@@ -135,7 +140,7 @@
             overflow: hidden;
             box-shadow: var(--shadow);
             transition: var(--transition);
-             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
 
         .project-card:hover {
@@ -249,7 +254,8 @@
                 gap: 1rem;
             }
 
-            header, .services-menu {
+            header,
+            .services-menu {
                 padding: 0.5rem 1rem;
             }
 
@@ -257,7 +263,7 @@
                 top: 0px;
 
             }
-          
+
         }
 
         @media (max-width: 480px) {
@@ -280,6 +286,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <a href="index.html" class="logo"><img src="img/logo/ALFARIS LOGO 33.svg" alt=""> </a>
@@ -301,7 +308,7 @@
     <main class="gallery">
         <!----------Custom Sofas & Majlis-------->
         <div class="project-card" data-category="Custom-Sofas">
-            <img src="img/sofa/back-sofa.jpg" alt="Velvet Curtains" class="project-img">
+            <img src="img/sofa/back-sofa.jpeg" alt="Velvet Curtains" class="project-img">
             <div class="project-info">
                 <h3 class="project-title">Custom Sofas & Majlis</h3>
                 <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
@@ -309,15 +316,15 @@
         </div>
         <!----------------------------------------------------------------->
         <!----------Custom-Curtains-------->
-          <div class="project-card" data-category="Custom-Curtains">
+        <div class="project-card" data-category="Custom-Curtains">
             <img src="img/curtains/back-curtains.jpg" alt="Luxury Sofa" class="project-img">
             <div class="project-info">
                 <h3 class="project-title">Custom Curtains</h3>
                 <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
             </div>
         </div>
-         <!----------------------------------------------------------------->
-         <!----------wallpapers-------->
+        <!----------------------------------------------------------------->
+        <!----------wallpapers-------->
         <div class="project-card" data-category="wallpapers">
             <img src="img/wallpaper/back-wallpepar.jpg" alt="Floral Wallpaper" class="project-img">
             <div class="project-info">
@@ -325,8 +332,8 @@
                 <p class="project-desc">Feature wall with premium floral wallpaper.</p>
             </div>
         </div>
-         <!----------------------------------------------------------------->
-         <!----------Carpet-------->
+        <!----------------------------------------------------------------->
+        <!----------Carpet-------->
         <div class="project-card" data-category="Carpet">
             <img src="img/carpet/back-carpet.jpg" alt="Velvet Curtains" class="project-img">
             <div class="project-info">
@@ -334,8 +341,8 @@
                 <p class="project-desc">Royal blue velvet curtains tailored to fit perfectly.</p>
             </div>
         </div>
-         <!----------------------------------------------------------------->
-         <!----------"Wood-Marble-------->
+        <!----------------------------------------------------------------->
+        <!----------"Wood-Marble-------->
         <div class="project-card" data-category="Wood-Marble">
             <img src="img/wood and marble/back-wood.jpg" alt="Luxury Sofa" class="project-img">
             <div class="project-info">
@@ -343,8 +350,8 @@
                 <p class="project-desc">Custom-made luxury sofa in deep brown fabric.</p>
             </div>
         </div>
-         <!----------------------------------------------------------------->
-         <!----------Parquet-Flooring-------->
+        <!----------------------------------------------------------------->
+        <!----------Parquet-Flooring-------->
         <div class="project-card" data-category="Parquet-Flooring">
             <img src="img/parquet/back-parquet.jpg" alt="Floral Wallpaper" class="project-img">
             <div class="project-info">
@@ -352,7 +359,7 @@
                 <p class="project-desc">Feature wall with premium floral wallpaper.</p>
             </div>
         </div>
-         <!----------------------------------------------------------------->
+        <!----------------------------------------------------------------->
     </main>
 
     <div class="lightbox">
@@ -365,8 +372,8 @@
     </div>
 
     <footer>
-                <p>&copy; Website created by Ahmed Al Shokairy. <span id="year"></span></p>
-            </footer>
+        <p>&copy; Website created by Ahmed Al Shokairy. <span id="year"></span></p>
+    </footer>
 
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
@@ -446,21 +453,22 @@
             }
         });
         // تشغيل الفلتر بناءً على رابط URL مثل Project.html?filter=Custom-Curtains
-window.addEventListener('DOMContentLoaded', () => {
-    const params = new URLSearchParams(window.location.search);
-    const filter = params.get('filter');
-    if (filter) {
-        const targetBtn = Array.from(serviceBtns).find(btn => btn.getAttribute('data-category') === filter);
-        if (targetBtn) {
-            targetBtn.click(); // يفعل الفلتر ويخلي الزرار active ويعرض الصور الخاصة بيه
-        } else {
-            filterProjects('all'); // fallback لو الفلتر مش موجود
-        }
-    } else {
-        filterProjects('all'); // default عند فتح الصفحة بدون فلاتر
-    }
-});
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const filter = params.get('filter');
+            if (filter) {
+                const targetBtn = Array.from(serviceBtns).find(btn => btn.getAttribute('data-category') === filter);
+                if (targetBtn) {
+                    targetBtn.click(); // يفعل الفلتر ويخلي الزرار active ويعرض الصور الخاصة بيه
+                } else {
+                    filterProjects('all'); // fallback لو الفلتر مش موجود
+                }
+            } else {
+                filterProjects('all'); // default عند فتح الصفحة بدون فلاتر
+            }
+        });
 
     </script>
 </body>
+
 </html>
